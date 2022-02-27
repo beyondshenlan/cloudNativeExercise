@@ -13,6 +13,7 @@ import (
 var VERSION string
 
 func main() {
+
 	os.Setenv("VERSION", "exercise2")
 	VERSION = os.Getenv("VERSION")
 	if VERSION != "" {
