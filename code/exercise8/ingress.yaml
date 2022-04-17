@@ -1,0 +1,41 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  generation: 1
+  name: letsencrypt-prod
+spec:
+  acme:
+    email: xxx@example.com
+    preferredChain: ""
+    privateKeySecretRef:
+      name: letsencrypt-prod
+    server: https://acme-v02.api.letsencrypt.org/directory
+    solvers:
+      - http01:
+          ingress:
+            class: nginx
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/issuer: letsencrypt-prod
+  name: ingress-letsencrypt
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: mod8-ssl.abc.xy
+      http:
+        paths:
+          - backend:
+              service:
+                name: httpserver
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - mod8-ssl.abc.xy
+      secretName: mod8-tls
