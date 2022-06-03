@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"exercise1/ch9/test_ex1/web"
 	"fmt"
 	"net/http"
 	"time"
