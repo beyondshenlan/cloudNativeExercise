@@ -26,7 +26,7 @@ redis-benchmark -d 10 -t get,set
 |1k| 100000 requests completed in 2.00 seconds |
 |5k| 100000 requests completed in 2.79 seconds |
 
-###作业2 统计平均key 的内存占用
+### 作业2 统计平均key 的内存占用
 | key value的大小 | key的平均大小 |
 |--------------|----------|
 | 10 字节        | 90       |
